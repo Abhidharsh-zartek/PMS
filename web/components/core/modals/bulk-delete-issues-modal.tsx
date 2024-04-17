@@ -91,7 +91,7 @@ export const BulkDeleteIssuesModal: React.FC<Props> = observer((props) => {
         setToast({
           type: TOAST_TYPE.SUCCESS,
           title: "Success!",
-          message: "Issues deleted successfully!",
+          message: "Tasks deleted successfully!",
         });
         handleClose();
       })
@@ -110,10 +110,10 @@ export const BulkDeleteIssuesModal: React.FC<Props> = observer((props) => {
     query === ""
       ? Object.values(issues ?? {})
       : Object.values(issues ?? {})?.filter(
-          (issue) =>
-            issue.name.toLowerCase().includes(query.toLowerCase()) ||
-            `${projectDetails?.identifier}-${issue.sequence_id}`.toLowerCase().includes(query.toLowerCase())
-        ) ?? [];
+        (issue) =>
+          issue.name.toLowerCase().includes(query.toLowerCase()) ||
+          `${projectDetails?.identifier}-${issue.sequence_id}`.toLowerCase().includes(query.toLowerCase())
+      ) ?? [];
 
   return (
     <Transition.Root show={isOpen} as={React.Fragment} afterLeave={() => setQuery("")} appear>
@@ -163,7 +163,7 @@ export const BulkDeleteIssuesModal: React.FC<Props> = observer((props) => {
                         <li className="p-2">
                           {query === "" && (
                             <h2 className="mb-2 mt-4 px-3 text-xs font-semibold text-custom-text-100">
-                              Select issues to delete
+                              Select tasks to delete
                             </h2>
                           )}
                           <ul className="text-sm text-custom-text-200">
@@ -198,7 +198,7 @@ export const BulkDeleteIssuesModal: React.FC<Props> = observer((props) => {
                         Cancel
                       </Button>
                       <Button variant="danger" size="sm" onClick={handleSubmit(handleDelete)} loading={isSubmitting}>
-                        {isSubmitting ? "Deleting..." : "Delete selected issues"}
+                        {isSubmitting ? "Deleting..." : "Delete selected tasks"}
                       </Button>
                     </div>
                   )}

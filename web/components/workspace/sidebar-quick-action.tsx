@@ -73,25 +73,22 @@ export const WorkspaceSidebarQuickAction = observer(() => {
       />
 
       <div
-        className={`mt-4 flex w-full cursor-pointer items-center justify-between px-4 ${
-          isSidebarCollapsed ? "flex-col gap-1" : "gap-2"
-        }`}
+        className={`mt-4 flex w-full cursor-pointer items-center justify-between px-4 ${isSidebarCollapsed ? "flex-col gap-1" : "gap-2"
+          }`}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         {isAuthorizedUser && (
           <div
-            className={`relative flex w-full cursor-pointer items-center justify-between gap-1 rounded px-2 ${
-              isSidebarCollapsed
+            className={`relative flex w-full cursor-pointer items-center justify-between gap-1 rounded px-2 ${isSidebarCollapsed
                 ? "px-2 hover:bg-custom-sidebar-background-80"
                 : "border-[0.5px] border-custom-border-200 px-3 shadow-custom-sidebar-shadow-2xs"
-            }`}
+              }`}
           >
             <button
               type="button"
-              className={`relative flex flex-shrink-0 flex-grow items-center gap-2 rounded py-1.5 outline-none ${
-                isSidebarCollapsed ? "justify-center" : ""
-              } ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
+              className={`relative flex flex-shrink-0 flex-grow items-center gap-2 rounded py-1.5 outline-none ${isSidebarCollapsed ? "justify-center" : ""
+                } ${disabled ? "cursor-not-allowed opacity-50" : ""}`}
               onClick={() => {
                 setTrackElement("APP_SIDEBAR_QUICK_ACTIONS");
                 commandPaletteStore.toggleCreateIssueModal(true, EIssuesStoreType.PROJECT);
@@ -110,21 +107,18 @@ export const WorkspaceSidebarQuickAction = observer(() => {
 
                 <button
                   type="button"
-                  className={`ml-1.5 flex flex-shrink-0 items-center justify-center rounded py-1.5 ${
-                    isSidebarCollapsed ? "hidden" : "block"
-                  }`}
+                  className={`ml-1.5 flex flex-shrink-0 items-center justify-center rounded py-1.5 ${isSidebarCollapsed ? "hidden" : "block"
+                    }`}
                 >
                   <ChevronUp
-                    className={`h-4 w-4 rotate-180 transform !text-custom-sidebar-text-300 transition-transform duration-300 ${
-                      isDraftButtonOpen ? "rotate-0" : ""
-                    }`}
+                    className={`h-4 w-4 rotate-180 transform !text-custom-sidebar-text-300 transition-transform duration-300 ${isDraftButtonOpen ? "rotate-0" : ""
+                      }`}
                   />
                 </button>
 
                 <div
-                  className={`fixed left-4 mt-0 h-10 w-[203px] pt-2 ${isSidebarCollapsed ? "top-[5.5rem]" : "top-24"} ${
-                    isDraftButtonOpen ? "block" : "hidden"
-                  }`}
+                  className={`fixed left-4 mt-0 h-10 w-[203px] pt-2 ${isSidebarCollapsed ? "top-[5.5rem]" : "top-24"} ${isDraftButtonOpen ? "block" : "hidden"
+                    }`}
                 >
                   <div className="h-full w-full">
                     <button
@@ -142,13 +136,11 @@ export const WorkspaceSidebarQuickAction = observer(() => {
         )}
 
         <button
-          className={`flex flex-shrink-0 items-center rounded p-2 gap-2 outline-none ${
-            isAuthorizedUser ? "justify-center" : "w-full"
-          } ${
-            isSidebarCollapsed
+          className={`flex flex-shrink-0 items-center rounded p-2 gap-2 outline-none ${isAuthorizedUser ? "justify-center" : "w-full"
+            } ${isSidebarCollapsed
               ? "hover:bg-custom-sidebar-background-80"
               : "border-[0.5px] border-custom-border-200 shadow-custom-sidebar-shadow-2xs"
-          }`}
+            }`}
           onClick={() => commandPaletteStore.toggleCommandPaletteModal(true)}
         >
           <Search className="h-4 w-4 text-custom-sidebar-text-300" />

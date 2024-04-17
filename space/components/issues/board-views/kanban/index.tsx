@@ -27,7 +27,7 @@ export const IssueKanbanView = observer(() => {
             </div>
             <div className="hide-vertical-scrollbar h-full w-full overflow-hidden overflow-y-auto">
               {store.issue.getFilteredIssuesByState(_state.id) &&
-              store.issue.getFilteredIssuesByState(_state.id).length > 0 ? (
+                store.issue.getFilteredIssuesByState(_state.id).length > 0 ? (
                 <div className="space-y-3 px-2 pb-2">
                   {store.issue.getFilteredIssuesByState(_state.id).map((_issue: IIssue) => (
                     <IssueKanBanBlock key={_issue.id} issue={_issue} />
@@ -36,7 +36,7 @@ export const IssueKanbanView = observer(() => {
               ) : (
                 <div className="flex items-center justify-center gap-2 pt-10 text-center text-sm font-medium text-custom-text-200">
                   <Icon iconName="stack" />
-                  No issues in this state
+                  No tasks in this state
                 </div>
               )}
             </div>

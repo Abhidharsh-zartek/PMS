@@ -37,8 +37,15 @@ const KanbanIssueBlocksListMemo: React.FC<IssueBlocksListProps> = (props) => {
     <>
       {issueIds && issueIds.length > 0 ? (
         <>
-          {issueIds.map((issueId) => {
+          {issueIds.sort((val1, val2) => {
+            const issue1 = issuesMap[val1];
+            const issue2 = issuesMap[val2];
+
+            return new Date(issue1.updated_at) - new Date(issue2.updated_at)
+
+          }).map((issueId, index) => {
             if (!issueId) return null;
+
 
             let draggableId = issueId;
             if (columnId) draggableId = `${draggableId}__${columnId}`;

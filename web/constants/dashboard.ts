@@ -14,6 +14,7 @@ import { TIssuesListTypes, TStateGroups } from "@plane/types";
 // constants
 import { EUserWorkspaceRoles } from "./workspace";
 // icons
+import { StockIcon } from "components/common/appIcons";
 
 // gradients for issues by priority widget graph bars
 export const PRIORITY_GRAPH_GRADIENTS = [
@@ -295,5 +296,13 @@ export const SIDEBAR_MENU_ITEMS: {
     access: EUserWorkspaceRoles.GUEST,
     highlight: (pathname: string, baseUrl: string) => pathname === `${baseUrl}/active-cycles`,
     Icon: ContrastIcon,
+  },
+  {
+    key: "roi",
+    label: "ROI",
+    href: `/roi/running`,
+    access: EUserWorkspaceRoles.MEMBER,
+    highlight: (pathname: string, baseUrl: string) => pathname.includes(`${baseUrl}/roi`),
+    Icon: StockIcon,
   },
 ];

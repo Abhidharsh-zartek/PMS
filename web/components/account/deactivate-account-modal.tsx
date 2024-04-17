@@ -97,7 +97,7 @@ export const DeactivateAccountModal: React.FC<Props> = (props) => {
                           Deactivate your account?
                         </Dialog.Title>
                         <p className="mt-6 list-disc pr-4 text-base font-normal text-custom-text-200">
-                          Once deactivated, you can{"'"}t be assigned issues and be billed for your workspace.To
+                          Once deactivated, you can{"'"}t be assigned tasks and be billed for your workspace.To
                           reactivate your account, you will need an invite to a workspace at this email address.
                         </p>
                       </div>

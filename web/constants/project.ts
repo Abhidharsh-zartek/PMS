@@ -92,14 +92,6 @@ export const PROJECT_SETTINGS_LINKS: {
     Icon: SettingIcon,
   },
   {
-    key: "features",
-    label: "Features",
-    href: `/settings/features`,
-    access: EUserProjectRoles.ADMIN,
-    highlight: (pathname: string, baseUrl: string) => pathname === `${baseUrl}/settings/features`,
-    Icon: SettingIcon,
-  },
-  {
     key: "states",
     label: "States",
     href: `/settings/states`,
@@ -121,14 +113,6 @@ export const PROJECT_SETTINGS_LINKS: {
     href: `/settings/estimates`,
     access: EUserProjectRoles.ADMIN,
     highlight: (pathname: string, baseUrl: string) => pathname === `${baseUrl}/settings/estimates`,
-    Icon: SettingIcon,
-  },
-  {
-    key: "automations",
-    label: "Automations",
-    href: `/settings/automations`,
-    access: EUserProjectRoles.ADMIN,
-    highlight: (pathname: string, baseUrl: string) => pathname === `${baseUrl}/settings/automations`,
     Icon: SettingIcon,
   },
 ];

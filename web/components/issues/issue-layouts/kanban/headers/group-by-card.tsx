@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/router";
 // lucide icons
-import { Minimize2, Maximize2, Circle, Plus } from "lucide-react";
+import { Minimize2, Maximize2, Circle, Plus, Timer } from "lucide-react";
 import { TIssue, ISearchIssueResponse, TIssueKanbanFilters, TIssueGroupByOptions } from "@plane/types";
 // ui
 import { CustomMenu, TOAST_TYPE, setToast } from "@plane/ui";
@@ -102,23 +102,20 @@ export const HeaderGroupByCard: FC<IHeaderGroupByCard> = observer((props) => {
         />
       )}
       <div
-        className={`relative flex flex-shrink-0 gap-2 p-1.5 ${
-          verticalAlignPosition ? `w-[44px] flex-col items-center` : `w-full flex-row items-center`
-        }`}
+        className={`mt-3 border border-custom-text-100 rounded relative flex flex-shrink-0 gap-2 p-1.5 ${verticalAlignPosition ? `w-[44px] flex-col items-center` : `ml-1.5 w-[328px] flex-row items-center`
+          }`}
       >
         <div className="flex h-[20px] w-[20px] flex-shrink-0 items-center justify-center overflow-hidden rounded-sm">
           {icon ? icon : <Circle width={14} strokeWidth={2} />}
         </div>
 
         <div
-          className={`relative flex items-center gap-1 overflow-hidden ${
-            verticalAlignPosition ? `flex-col` : `w-full flex-row`
-          }`}
+          className={`relative flex items-center gap-1 overflow-hidden ${verticalAlignPosition ? `flex-col` : `w-full flex-row`
+            }`}
         >
           <div
-            className={`line-clamp-1 inline-block overflow-hidden truncate font-medium text-custom-text-100 ${
-              verticalAlignPosition ? `vertical-lr max-h-[400px]` : ``
-            }`}
+            className={`line-clamp-1 inline-block overflow-hidden truncate font-medium text-custom-text-100 ${verticalAlignPosition ? `vertical-lr max-h-[400px]` : ``
+              }`}
           >
             {title}
           </div>
@@ -127,6 +124,10 @@ export const HeaderGroupByCard: FC<IHeaderGroupByCard> = observer((props) => {
           >
             {count || 0}
           </div>
+        </div>
+
+        <div className='text-sm flex flex-row items-center gap-1 font-semibold' >
+          <Timer width={14} strokeWidth={2} /> 100Hr
         </div>
 
         {sub_group_by === null && (

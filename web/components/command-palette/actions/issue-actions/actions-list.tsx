@@ -145,7 +145,7 @@ export const CommandPaletteIssueActions: React.FC<Props> = observer((props) => {
       <Command.Item onSelect={deleteIssue} className="focus:outline-none">
         <div className="flex items-center gap-2 text-custom-text-200">
           <Trash2 className="h-3.5 w-3.5" />
-          Delete issue
+          Delete task
         </div>
       </Command.Item>
       <Command.Item

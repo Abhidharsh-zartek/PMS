@@ -15,6 +15,7 @@ import {
   ChevronDown,
   MoreHorizontal,
   Inbox,
+  PlusIcon
 } from "lucide-react";
 import { Disclosure, Transition } from "@headlessui/react";
 // icons
@@ -37,6 +38,8 @@ import { useApplication, useEventTracker, useProject } from "@/hooks/store";
 import useOutsideClickDetector from "@/hooks/use-outside-click-detector";
 import { usePlatformOS } from "@/hooks/use-platform-os";
 // helpers
+import { BugIcon, DataTransferIcon, FolderIcon, MilestonesSubIcon, SOPIcon } from "components/common/appIcons";
+import { Button } from "@plane/ui";
 
 // components
 
@@ -50,25 +53,52 @@ type Props = {
 };
 
 const navigation = (workspaceSlug: string, projectId: string) => [
+  // {
+  //   name: "Issues",
+  //   href: `/${workspaceSlug}/projects/${projectId}/issues`,
+  //   Icon: LayersIcon,
+  // },
+  // {
+  //   name: "Cycles",
+  //   href: `/${workspaceSlug}/projects/${projectId}/cycles`,
+  //   Icon: ContrastIcon,
+  // },
+  // {
+  //   name: "Modules",
+  //   href: `/${workspaceSlug}/projects/${projectId}/modules`,
+  //   Icon: DiceIcon,
+  // },
+  // {
+  //   name: "Views",
+  //   href: `/${workspaceSlug}/projects/${projectId}/views`,
+  //   Icon: PhotoFilterIcon,
+  // },
+
   {
-    name: "Issues",
-    href: `/${workspaceSlug}/projects/${projectId}/issues`,
-    Icon: LayersIcon,
+    name: "Bugs",
+    href: `#`,
+    Icon: BugIcon,
   },
   {
-    name: "Cycles",
-    href: `/${workspaceSlug}/projects/${projectId}/cycles`,
-    Icon: ContrastIcon,
+    name: "CR",
+    dropdown: [
+      {
+        name: "CR1",
+        href: `#`,
+        Icon: DataTransferIcon,
+      },
+      {
+        name: "CR2",
+        href: `#`,
+        Icon: DataTransferIcon,
+      },
+    ],
+    Icon: FolderIcon,
   },
   {
-    name: "Modules",
-    href: `/${workspaceSlug}/projects/${projectId}/modules`,
-    Icon: DiceIcon,
-  },
-  {
-    name: "Views",
-    href: `/${workspaceSlug}/projects/${projectId}/views`,
-    Icon: PhotoFilterIcon,
+    name: "SOP",
+    href: `#`,
+    Icon: SOPIcon,
   },
   {
     name: "Pages",
@@ -298,7 +328,7 @@ export const ProjectSidebarListItem: React.FC<Props> = observer((props) => {
                     </Link>
                   </CustomMenu.MenuItem>
                   <CustomMenu.MenuItem onClick={handleCopyText}>
-                    <span className="flex items-center justify-start gap-2">
+                    <span className="flex items-center justify-startnavigation(workspaceSlug  gap-2">
                       <LinkIcon className="h-3.5 w-3.5 stroke-[1.5]" />
                       <span>Copy link</span>
                     </span>
@@ -344,39 +374,116 @@ export const ProjectSidebarListItem: React.FC<Props> = observer((props) => {
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel className={`mt-1 space-y-1 ${isCollapsed ? "" : "ml-[2.25rem]"}`}>
-                {navigation(workspaceSlug as string, project?.id).map((item) => {
-                  if (
-                    (item.name === "Cycles" && !project.cycle_view) ||
-                    (item.name === "Modules" && !project.module_view) ||
-                    (item.name === "Views" && !project.issue_views_view) ||
-                    (item.name === "Pages" && !project.page_view) ||
-                    (item.name === "Inbox" && !project.inbox_view)
-                  )
-                    return;
+                {[...([1, 2, 3, 4, 5, 6].map((val) => {
+                  return ({
+                    name: "Milestone " + val,
+                    dropdown: [
+                      {
+                        name: "UI Design",
+                        href: `/${workspaceSlug}/projects/${projectId}/issues`,
+                        Icon: MilestonesSubIcon,
+                      },
+                    ],
+                    Icon: FolderIcon,
+                  })
+                })), ...navigation(workspaceSlug as string, project?.id)].map((item) => {
+                  // if (
+                  //   (item.name === "Cycles" && !project.cycle_view) ||
+                  //   (item.name === "Modules" && !project.module_view) ||
+                  //   (item.name === "Views" && !project.issue_views_view) ||
+                  //   (item.name === "Pages" && !project.page_view)
+                  // )
+                  //   return;
 
                   return (
-                    <Link key={item.name} href={item.href} onClick={handleProjectClick}>
-                      <span className="block w-full">
-                        <Tooltip
-                          isMobile={isMobile}
-                          tooltipContent={`${project?.name}: ${item.name}`}
-                          position="right"
-                          className="ml-2"
-                          disabled={!isCollapsed}
-                        >
-                          <div
-                            className={`group flex items-center gap-2.5 rounded-md px-2 py-1.5 text-xs font-medium outline-none ${
-                              router.asPath.includes(item.href)
+                    item?.href ?
+                      <Link key={item.name} href={item.href} onClick={handleProjectClick}>
+                        <span className="mt-1 block w-full">
+
+                          <Tooltip
+                            tooltipContent={`${project?.name}: ${item.name}`}
+                            position="right"
+                            className="ml-2"
+                            disabled={!isCollapsed}
+                          >
+                            <div
+                              className={`group flex items-center gap-2.5 rounded-md px-2 py-1.5 text-xs font-medium outline-none ${router.asPath.includes(item.href)
                                 ? "bg-custom-primary-100/10 text-custom-primary-100"
                                 : "text-custom-sidebar-text-300 hover:bg-custom-sidebar-background-80 focus:bg-custom-sidebar-background-80"
-                            } ${isCollapsed ? "justify-center" : ""}`}
-                          >
-                            <item.Icon className="h-4 w-4 stroke-[1.5]" />
-                            {!isCollapsed && item.name}
-                          </div>
-                        </Tooltip>
-                      </span>
-                    </Link>
+                                } ${isCollapsed ? "justify-center" : ""}`}
+                            >
+                              <item.Icon className="h-4 w-4 stroke-[1.5]" />
+                              {!isCollapsed && item.name}
+                            </div>
+                          </Tooltip>
+                        </span>
+                      </Link>
+
+                      :
+
+                      <Disclosure key={item.name} defaultOpen={false}>
+                        {() => (
+                          <>
+
+                            <Disclosure.Button
+                              as="div"
+                              className={`cursor-pointer group flex items-center justify-between gap-2.5 rounded-md px-2 py-1.5 text-xs font-medium outline-none ${item.dropdown?.find(val => router.asPath.includes(val.href))
+                                ? "bg-custom-primary-100/10 text-custom-primary-100"
+                                : "text-custom-sidebar-text-300 hover:bg-custom-sidebar-background-80 focus:bg-custom-sidebar-background-80"
+                                } ${isCollapsed ? "justify-center" : ""}`}>
+                              <div className={'flex flex-row items-center gap-1 ' + (isCollapsed ? 'w-full' : '')}>
+                                <Tooltip tooltipContent={`${project?.name}: ${item.name}`} position="right" className="ml-2" disabled={!isCollapsed}>
+                                  <div
+                                    className={'flex flex-row justify-center gap-x-2.5 ' + (isCollapsed ? 'w-full' : '')}
+                                  >
+                                    <item.Icon className="h-4 w-4 stroke-[1.5]" />
+                                    {!isCollapsed && item.name}
+                                  </div>
+                                </Tooltip>
+                                {!isCollapsed && <button>
+                                  <MoreHorizontal className="h-3.5 w-3.5" />
+                                </button>}
+                              </div>
+                              {!isCollapsed && <button className=''>
+                                <PlusIcon className='h-3' />
+                              </button>}
+                            </Disclosure.Button>
+
+
+                            <Transition
+                              enter="transition duration-100 ease-out"
+                              enterFrom="transform scale-95 opacity-0"
+                              enterTo="transform scale-100 opacity-100"
+                              leave="transition duration-75 ease-out"
+                              leaveFrom="transform scale-100 opacity-100"
+                              leaveTo="transform scale-95 opacity-0"
+                            >
+                              <Disclosure.Panel className={`mt-1 space-y-1 ${isCollapsed ? "" : "ml-[1.25rem]"}`}>
+                                {
+                                  item.dropdown?.map((element) =>
+                                    <Link href={element.href} >
+                                      <Tooltip tooltipContent={`${project?.name}: ${item.name}: ${element.name}`} position="right" className="ml-2" disabled={!isCollapsed}>
+                                        <div
+                                          className={`group flex items-center gap-2.5 rounded-md px-2 py-1.5 text-xs font-medium outline-none ${router.asPath.includes(element.href)
+                                            ? "bg-custom-primary-100/10 text-custom-primary-100"
+                                            : "text-custom-sidebar-text-300 hover:bg-custom-sidebar-background-80 focus:bg-custom-sidebar-background-80"
+                                            } ${isCollapsed ? "justify-center" : ""}`}
+                                        >
+                                          <element.Icon className="h-4 w-4 stroke-[1.5]" />
+                                          {!isCollapsed && element.name}
+                                        </div>
+                                      </Tooltip></Link>)
+                                }
+                              </Disclosure.Panel>
+                            </Transition>
+                          </>
+                        )}
+                      </Disclosure>
+
+
+
+
+
                   );
                 })}
               </Disclosure.Panel>

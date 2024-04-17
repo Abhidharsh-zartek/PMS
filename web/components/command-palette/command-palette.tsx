@@ -9,7 +9,6 @@ import { CommandModal, ShortcutsModal } from "@/components/command-palette";
 // ui
 // components
 import { BulkDeleteIssuesModal } from "@/components/core";
-import { CycleCreateUpdateModal } from "@/components/cycles";
 import { CreateUpdateIssueModal, DeleteIssueModal } from "@/components/issues";
 import { CreateUpdateModuleModal } from "@/components/modules";
 import { CreatePageModal } from "@/components/pages";
@@ -276,12 +275,7 @@ export const CommandPalette: FC = observer(() => {
       )}
       {workspaceSlug && projectId && (
         <>
-          <CycleCreateUpdateModal
-            isOpen={isCreateCycleModalOpen}
-            handleClose={() => toggleCreateCycleModal(false)}
-            workspaceSlug={workspaceSlug.toString()}
-            projectId={projectId.toString()}
-          />
+
           <CreateUpdateModuleModal
             isOpen={isCreateModuleModalOpen}
             onClose={() => toggleCreateModuleModal(false)}

@@ -1,5 +1,5 @@
 // icons
-import { Calendar, GanttChartSquare, Kanban, List, Sheet } from "lucide-react";
+import {  GanttChartSquare, Kanban  } from "lucide-react";
 // types
 import {
   IIssueFilterOptions,
@@ -124,11 +124,14 @@ export const ISSUE_LAYOUTS: {
   title: string;
   icon: any;
 }[] = [
-  { key: "list", title: "List Layout", icon: List },
+  // { key: "list", title: "List Layout", icon: List },
+  // { key: "kanban", title: "Kanban Layout", icon: Kanban },
+  // { key: "calendar", title: "Calendar Layout", icon: Calendar },
+  // { key: "spreadsheet", title: "Spreadsheet Layout", icon: Sheet },
+  // { key: "gantt_chart", title: "Gantt Chart Layout", icon: GanttChartSquare },
+  
   { key: "kanban", title: "Kanban Layout", icon: Kanban },
-  { key: "calendar", title: "Calendar Layout", icon: Calendar },
-  { key: "spreadsheet", title: "Spreadsheet Layout", icon: Sheet },
-  { key: "gantt_chart", title: "Gantt Chart Layout", icon: GanttChartSquare },
+  { key: "spreadsheet", title: "Spreadsheet Layout", icon: GanttChartSquare  },
 ];
 
 export interface ILayoutDisplayFiltersOptions {

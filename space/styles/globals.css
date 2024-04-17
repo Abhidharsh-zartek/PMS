@@ -92,7 +92,6 @@
     --color-sidebar-shadow-4xl: var(--color-shadow-4xl);
   }
 
-  [data-theme="light"],
   [data-theme="light-contrast"] {
     color-scheme: light !important;
 
@@ -123,17 +122,6 @@
     --color-onboarding-shadow-sm: 0px 4px 20px 0px rgba(126, 139, 171, 0.1);
   }
 
-  [data-theme="light"] {
-    --color-text-100: 23, 23, 23; /* primary text */
-    --color-text-200: 58, 58, 58; /* secondary text */
-    --color-text-300: 82, 82, 82; /* tertiary text */
-    --color-text-400: 163, 163, 163; /* placeholder text */
-
-    --color-border-100: 245, 245, 245; /* subtle border= 1 */
-    --color-border-200: 229, 229, 229; /* subtle border- 2 */
-    --color-border-300: 212, 212, 212; /* strong border- 1 */
-    --color-border-400: 185, 185, 185; /* strong border- 2 */
-  }
 
   [data-theme="light-contrast"] {
     --color-text-100: 11, 11, 11; /* primary text */
@@ -147,7 +135,6 @@
     --color-border-400: 58, 58, 58; /* strong border- 2 */
   }
 
-  [data-theme="dark"],
   [data-theme="dark-contrast"] {
     color-scheme: dark !important;
 
@@ -185,21 +172,7 @@
     --color-onboarding-border-300: 34, 35, 38, 0.5;
 
     --color-onboarding-shadow-sm: 0px 4px 20px 0px rgba(39, 44, 56, 0.1);
-  }
-
-  [data-theme="dark"] {
-    --color-text-100: 229, 229, 229; /* primary text */
-    --color-text-200: 163, 163, 163; /* secondary text */
-    --color-text-300: 115, 115, 115; /* tertiary text */
-    --color-text-400: 82, 82, 82; /* placeholder text */
-
-    --color-border-100: 34, 34, 34; /* subtle border= 1 */
-    --color-border-200: 38, 38, 38; /* subtle border- 2 */
-    --color-border-300: 46, 46, 46; /* strong border- 1 */
-    --color-border-400: 58, 58, 58; /* strong border- 2 */
-  }
-
-  [data-theme="dark-contrast"] {
+ 
     --color-text-100: 250, 250, 250; /* primary text */
     --color-text-200: 241, 241, 241; /* secondary text */
     --color-text-300: 212, 212, 212; /* tertiary text */
@@ -211,8 +184,6 @@
     --color-border-400: 185, 185, 185; /* strong border- 2 */
   }
 
-  [data-theme="light"],
-  [data-theme="dark"],
   [data-theme="light-contrast"],
   [data-theme="dark-contrast"] {
     --color-primary-10: 236, 241, 255;
