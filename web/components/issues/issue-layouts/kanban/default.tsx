@@ -148,9 +148,8 @@ const GroupByKanBan: React.FC<IGroupByKanBan> = observer((props) => {
           return (
             <div
               key={subList.id}
-              className={`relative flex flex-shrink-0 flex-col group ${
-                groupByVisibilityToggle.showIssues ? `w-[350px]` : ``
-              } `}
+              className={`relative flex flex-shrink-0 flex-col group ${groupByVisibilityToggle.showIssues ? `w-[350px]` : ``
+                } `}
             >
               {sub_group_by === null && (
                 <div className="sticky top-0 z-[2] w-full flex-shrink-0 bg-custom-background-90 py-1">
@@ -192,7 +191,8 @@ const GroupByKanBan: React.FC<IGroupByKanBan> = observer((props) => {
                   scrollableContainerRef={scrollableContainerRef}
                   handleOnDrop={handleOnDrop}
                 />
-              )}
+              )
+              }
             </div>
           );
         })}

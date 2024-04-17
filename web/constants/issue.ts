@@ -1,5 +1,5 @@
 // icons
-import {  GanttChartSquare, Kanban  } from "lucide-react";
+import { Calendar, GanttChartSquare, Kanban, List, Sheet } from "lucide-react";
 // types
 import {
   IIssueFilterOptions,

@@ -32,7 +32,6 @@ import { WithDisplayPropertiesHOC } from "../properties/with-display-properties-
 // helpers
 // types
 // constants
-import { HourGlassIcon } from "components/common/appIcons";
 
 
 export interface IIssueProperties {
@@ -278,7 +277,7 @@ export const IssueProperties: React.FC<IIssueProperties> = observer((props) => {
         </div>
       </WithDisplayPropertiesHOC>
       <div className='flex flex-row items-center gap-1' >
-        <HourGlassIcon className="h-3" /> 16 hr
+        {'{hour_glass_icon}'} 16 hr
       </div>
 
       {/* priority */}
