@@ -217,9 +217,8 @@ export const CalendarQuickAddIssueForm: React.FC<Props> = observer((props) => {
       {isOpen && (
         <div
           ref={ref}
-          className={`z-20 w-full transition-all ${
-            isOpen ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
-          }`}
+          className={`z-20 w-full transition-all ${isOpen ? "scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
+            }`}
         >
           <form
             onSubmit={handleSubmit(onSubmitHandler)}

@@ -76,7 +76,7 @@ const KanbanIssueDetailsBlock: React.FC<IssueDetailsBlockProps> = observer((prop
           </Tooltip>
         </div>
       )}
-
+      <span className='pt-3 italic text-[10px]'>Desc : description of something...</span>
       <IssueProperties
         className="flex flex-wrap items-center gap-2 whitespace-nowrap text-custom-text-300 pt-1.5"
         issue={issue}
@@ -176,9 +176,8 @@ export const KanbanIssueBlock: React.FC<IssueBlockProps> = memo((props) => {
       >
         <ControlLink
           id={`issue-${issue.id}`}
-          href={`/${workspaceSlug}/projects/${issue.project_id}/${issue.archived_at ? "archives/" : ""}issues/${
-            issue.id
-          }`}
+          href={`/${workspaceSlug}/projects/${issue.project_id}/${issue.archived_at ? "archives/" : ""}issues/${issue.id
+            }`}
           target="_blank"
           onClick={() => handleIssuePeekOverview(issue)}
           disabled={!!issue?.tempId}

@@ -42,7 +42,7 @@ export const UserLoggedIn = () => {
           </div>
           <h1 className="mt-12 text-3xl font-semibold">Logged in Successfully!</h1>
           <p className="mt-4">
-            You{"'"}ve successfully logged in. Please enter the appropriate project URL to view the issue board.
+            You{"'"}ve successfully logged in. Please enter the appropriate project URL to view the task board.
           </p>
         </div>
       </div>

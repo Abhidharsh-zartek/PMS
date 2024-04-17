@@ -32,6 +32,8 @@ import { WithDisplayPropertiesHOC } from "../properties/with-display-properties-
 // helpers
 // types
 // constants
+import { HourGlassIcon } from "components/common/appIcons";
+
 
 export interface IIssueProperties {
   issue: TIssue;
@@ -237,9 +239,8 @@ export const IssueProperties: React.FC<IIssueProperties> = observer((props) => {
 
   const redirectToIssueDetail = () => {
     router.push({
-      pathname: `/${workspaceSlug}/projects/${issue.project_id}/${issue.archived_at ? "archives/" : ""}issues/${
-        issue.id
-      }`,
+      pathname: `/${workspaceSlug}/projects/${issue.project_id}/${issue.archived_at ? "archives/" : ""}issues/${issue.id
+        }`,
       hash: "sub-issues",
     });
   };
@@ -276,6 +277,9 @@ export const IssueProperties: React.FC<IIssueProperties> = observer((props) => {
           />
         </div>
       </WithDisplayPropertiesHOC>
+      <div className='flex flex-row items-center gap-1' >
+        <HourGlassIcon className="h-3" /> 16 hr
+      </div>
 
       {/* priority */}
       <WithDisplayPropertiesHOC displayProperties={displayProperties} displayPropertyKey="priority">

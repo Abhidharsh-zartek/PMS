@@ -36,7 +36,7 @@ export const PeekOverviewIssueProperties: React.FC<Props> = ({ issueDetails, mod
       setToastAlert({
         type: "success",
         title: "Link copied!",
-        message: "Issue link copied to clipboard",
+        message: "Task link copied to clipboard",
       });
     });
   };
@@ -80,17 +80,16 @@ export const PeekOverviewIssueProperties: React.FC<Props> = ({ issueDetails, mod
           </div>
           <div className="w-3/4">
             <div
-              className={`inline-flex items-center gap-1.5 rounded px-2.5 py-0.5 text-left text-sm capitalize ${
-                priority?.key === "urgent"
-                  ? "border-red-500/20 bg-red-500/20 text-red-500"
-                  : priority?.key === "high"
-                    ? "border-orange-500/20 bg-orange-500/20 text-orange-500"
-                    : priority?.key === "medium"
-                      ? "border-yellow-500/20 bg-yellow-500/20 text-yellow-500"
-                      : priority?.key === "low"
-                        ? "border-green-500/20 bg-green-500/20 text-green-500"
-                        : "border-custom-border-200 bg-custom-background-80"
-              }`}
+              className={`inline-flex items-center gap-1.5 rounded px-2.5 py-0.5 text-left text-sm capitalize ${priority?.key === "urgent"
+                ? "border-red-500/20 bg-red-500/20 text-red-500"
+                : priority?.key === "high"
+                  ? "border-orange-500/20 bg-orange-500/20 text-orange-500"
+                  : priority?.key === "medium"
+                    ? "border-yellow-500/20 bg-yellow-500/20 text-yellow-500"
+                    : priority?.key === "low"
+                      ? "border-green-500/20 bg-green-500/20 text-green-500"
+                      : "border-custom-border-200 bg-custom-background-80"
+                }`}
             >
               {priority && (
                 <span className="-my-1 grid place-items-center">

@@ -1,4 +1,4 @@
-export const THEMES = ["light", "dark", "light-contrast", "dark-contrast", "custom"];
+export const THEMES = ["light-contrast", "dark-contrast"];
 
 export interface I_THEME_OPTION {
   value: string;
@@ -13,38 +13,8 @@ export interface I_THEME_OPTION {
 
 export const THEME_OPTIONS: I_THEME_OPTION[] = [
   {
-    value: "system",
-    label: "System Preference",
-    type: "light",
-    icon: {
-      border: "#DEE2E6",
-      color1: "#FAFAFA",
-      color2: "#3F76FF",
-    },
-  },
-  {
-    value: "light",
-    label: "Light",
-    type: "light",
-    icon: {
-      border: "#DEE2E6",
-      color1: "#FAFAFA",
-      color2: "#3F76FF",
-    },
-  },
-  {
-    value: "dark",
-    label: "Dark",
-    type: "dark",
-    icon: {
-      border: "#2E3234",
-      color1: "#191B1B",
-      color2: "#3C85D9",
-    },
-  },
-  {
     value: "light-contrast",
-    label: "Light High Contrast",
+    label: "Light mode",
     type: "light",
     icon: {
       border: "#000000",
@@ -54,22 +24,12 @@ export const THEME_OPTIONS: I_THEME_OPTION[] = [
   },
   {
     value: "dark-contrast",
-    label: "Dark High Contrast",
+    label: "Dark mode",
     type: "dark",
     icon: {
       border: "#FFFFFF",
       color1: "#030303",
       color2: "#3A8BE9",
-    },
-  },
-  {
-    value: "custom",
-    label: "Custom Theming",
-    type: "light",
-    icon: {
-      border: "#FFC9C9",
-      color1: "#FFF7F7",
-      color2: "#FF5151",
     },
   },
 ];

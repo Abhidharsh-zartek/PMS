@@ -1,9 +1,6 @@
 export type TIssueLayouts =
-  | "list"
-  | "kanban"
-  | "calendar"
+   "kanban"
   | "spreadsheet"
-  | "gantt_chart";
 
 export type TIssueGroupByOptions =
   | "state"

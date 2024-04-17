@@ -26,18 +26,18 @@ const peekModes: {
   icon: string;
   label: string;
 }[] = [
-  { key: "side", icon: "side_navigation", label: "Side Peek" },
-  {
-    key: "modal",
-    icon: "dialogs",
-    label: "Modal Peek",
-  },
-  {
-    key: "full",
-    icon: "nearby",
-    label: "Full Screen Peek",
-  },
-];
+    { key: "side", icon: "side_navigation", label: "Side Peek" },
+    {
+      key: "modal",
+      icon: "dialogs",
+      label: "Modal Peek",
+    },
+    {
+      key: "full",
+      icon: "nearby",
+      label: "Full Screen Peek",
+    },
+  ];
 
 export const PeekOverviewHeader: React.FC<Props> = observer((props) => {
   const { handleClose } = props;
@@ -53,7 +53,7 @@ export const PeekOverviewHeader: React.FC<Props> = observer((props) => {
       setToastAlert({
         type: "success",
         title: "Link copied!",
-        message: "Issue link copied to clipboard",
+        message: "Task link copied to clipboard",
       });
     });
   };
@@ -95,8 +95,7 @@ export const PeekOverviewHeader: React.FC<Props> = observer((props) => {
                       key={mode.key}
                       value={mode.key}
                       className={({ active, selected }) =>
-                        `cursor-pointer select-none truncate rounded px-1 py-1.5 ${
-                          active || selected ? "bg-custom-background-80" : ""
+                        `cursor-pointer select-none truncate rounded px-1 py-1.5 ${active || selected ? "bg-custom-background-80" : ""
                         } ${selected ? "text-custom-text-100" : "text-custom-text-200"}`
                       }
                     >

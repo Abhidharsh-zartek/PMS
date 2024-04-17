@@ -2,7 +2,7 @@ import { Fragment, ReactNode, useEffect, useRef, useState } from "react";
 import sortBy from "lodash/sortBy";
 import { observer } from "mobx-react-lite";
 import { usePopper } from "react-popper";
-import { Check, ChevronDown, Search, Triangle } from "lucide-react";
+import { Check, ChevronDown, Search, Triangle, Hourglass } from "lucide-react";
 import { Combobox } from "@headlessui/react";
 // hooks
 import { cn } from "@/helpers/common.helper";
@@ -29,10 +29,10 @@ type Props = TDropdownProps & {
 
 type DropdownOptions =
   | {
-      value: number | null;
-      query: string;
-      content: JSX.Element;
-    }[]
+    value: number | null;
+    query: string;
+    content: JSX.Element;
+  }[]
   | undefined;
 
 export const EstimateDropdown: React.FC<Props> = observer((props) => {
@@ -88,7 +88,7 @@ export const EstimateDropdown: React.FC<Props> = observer((props) => {
     query: `${point?.value}`,
     content: (
       <div className="flex items-center gap-2">
-        <Triangle className="h-3 w-3 flex-shrink-0" />
+        <Hourglass className="h-3 w-3 flex-shrink-0" />
         <span className="flex-grow truncate">{point.value}</span>
       </div>
     ),
@@ -98,7 +98,7 @@ export const EstimateDropdown: React.FC<Props> = observer((props) => {
     query: "No estimate",
     content: (
       <div className="flex items-center gap-2">
-        <Triangle className="h-3 w-3 flex-shrink-0" />
+        <Hourglass className="h-3 w-3 flex-shrink-0" />
         <span className="flex-grow truncate">No estimate</span>
       </div>
     ),
@@ -196,7 +196,7 @@ export const EstimateDropdown: React.FC<Props> = observer((props) => {
               showTooltip={showTooltip}
               variant={buttonVariant}
             >
-              {!hideIcon && <Triangle className="h-3 w-3 flex-shrink-0" />}
+              {!hideIcon && <Hourglass className="h-3 w-3 flex-shrink-0" />}
               {(selectedEstimate || placeholder) && BUTTON_VARIANTS_WITH_TEXT.includes(buttonVariant) && (
                 <span className="flex-grow truncate">{selectedEstimate !== null ? selectedEstimate : placeholder}</span>
               )}
@@ -236,8 +236,7 @@ export const EstimateDropdown: React.FC<Props> = observer((props) => {
                       key={option.value}
                       value={option.value}
                       className={({ active, selected }) =>
-                        `w-full truncate flex items-center justify-between gap-2 rounded px-1 py-1.5 cursor-pointer select-none ${
-                          active ? "bg-custom-background-80" : ""
+                        `w-full truncate flex items-center justify-between gap-2 rounded px-1 py-1.5 cursor-pointer select-none ${active ? "bg-custom-background-80" : ""
                         } ${selected ? "text-custom-text-100" : "text-custom-text-200"}`
                       }
                     >

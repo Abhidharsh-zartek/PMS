@@ -27,6 +27,7 @@ import { useIssues } from "@/hooks/store/use-issues";
 import { usePlatformOS } from "@/hooks/use-platform-os";
 // constants
 // helper
+import { FolderIcon, MilestonesSubIcon } from "components/common/appIcons";
 
 export const ProjectIssuesHeader: React.FC = observer(() => {
   // states
@@ -146,9 +147,11 @@ export const ProjectIssuesHeader: React.FC = observer(() => {
 
                 <Breadcrumbs.BreadcrumbItem
                   type="text"
-                  link={
-                    <BreadcrumbLink label="Issues" icon={<LayersIcon className="h-4 w-4 text-custom-text-300" />} />
-                  }
+                  link={<BreadcrumbLink label="Milestone 1" icon={<FolderIcon className="h-4 w-4 text-custom-text-300" />} />}
+                />
+                <Breadcrumbs.BreadcrumbItem
+                  type="text"
+                  link={<BreadcrumbLink label="UI Design" icon={<MilestonesSubIcon className="h-4 w-4 text-custom-text-300" />} />}
                 />
               </Breadcrumbs>
               {issueCount && issueCount > 0 ? (
@@ -176,6 +179,7 @@ export const ProjectIssuesHeader: React.FC = observer(() => {
               </a>
             )}
           </div>
+          <span className='text-xs sm:whitespace-pre text-custom-text-300' >Project time - 3:00/24:45 hours</span>
           <div className="items-center gap-2 hidden md:flex">
             <LayoutSelection
               layouts={["list", "kanban", "calendar", "spreadsheet", "gantt_chart"]}

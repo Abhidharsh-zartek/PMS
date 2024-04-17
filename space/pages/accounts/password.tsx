@@ -164,10 +164,9 @@ const HomePage: NextPage = () => {
             <div className="h-[90%]">
               <Image
                 src={latestFeatures}
-                alt="Plane Issues"
-                className={`-mt-2 ml-8 h-full rounded-md ${
-                  resolvedTheme === "dark" ? "bg-onboarding-background-100" : "bg-custom-primary-70"
-                } `}
+                alt="Plane tasks"
+                className={`-mt-2 ml-8 h-full rounded-md ${resolvedTheme === "dark" ? "bg-onboarding-background-100" : "bg-custom-primary-70"
+                  } `}
               />
             </div>
           </div>

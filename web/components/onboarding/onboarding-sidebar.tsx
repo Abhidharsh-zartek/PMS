@@ -23,6 +23,7 @@ import { useUser, useWorkspace } from "@/hooks/store";
 // types
 import projectEmoji from "public/emoji/project-emoji.svg";
 // assets
+import { StockIcon } from "components/common/appIcons";
 
 const workspaceLinks = [
   {
@@ -44,6 +45,10 @@ const workspaceLinks = [
   {
     Icon: Bell,
     name: "Notifications",
+  },
+  {
+    Icon: StockIcon,
+    name: "ROI",
   },
 ];
 
@@ -139,15 +144,13 @@ export const OnboardingSidebar: React.FC<Props> = (props) => {
               }
               return timer > 0 ? (
                 <div
-                  className={`top-3 ml-6 mt-4 flex w-full max-w-screen-sm items-center border-[6px] bg-onboarding-background-200 transition-all ${
-                    resolvedTheme == "dark" ? "border-onboarding-background-100" : "border-custom-primary-20"
-                  } rounded-xl`}
+                  className={`top-3 ml-6 mt-4 flex w-full max-w-screen-sm items-center border-[6px] bg-onboarding-background-200 transition-all ${resolvedTheme == "dark" ? "border-onboarding-background-100" : "border-custom-primary-20"
+                    } rounded-xl`}
                 >
                   <div className="w-full rounded-lg border border-onboarding-background-400 py-6 pl-4">
                     <div
-                      className={`${
-                        resolvedTheme == "light" ? "bg-[#F5F5F5]" : "bg-[#363A40]"
-                      }  flex w-full items-center p-1`}
+                      className={`${resolvedTheme == "light" ? "bg-[#F5F5F5]" : "bg-[#363A40]"
+                        }  flex w-full items-center p-1`}
                     >
                       <div className="flex flex-shrink-0">
                         <Avatar
