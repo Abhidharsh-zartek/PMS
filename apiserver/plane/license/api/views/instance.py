@@ -181,11 +181,11 @@ class InstanceAdminSignInEndpoint(BaseAPIView):
             )
 
         # check if the instance is already activated
-        if InstanceAdmin.objects.first():
-            return Response(
-                {"error": "Admin for this instance is already registered"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+        # if InstanceAdmin.objects.first():
+        #     return Response(
+        #         {"error": "Admin for this instance is already registered"},
+        #         status=status.HTTP_400_BAD_REQUEST,
+        #     )
 
         # Get the email and password from all the user
         email = request.data.get("email", False)

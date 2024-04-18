@@ -10,6 +10,8 @@ from plane.app.serializers.user import (
 )
 from plane.db.models import (
     Project,
+    Milestone,
+    Module,
     ProjectMember,
     ProjectMemberInvite,
     ProjectIdentifier,
@@ -136,6 +138,12 @@ class ProjectListSerializer(DynamicBaseSerializer):
     class Meta:
         model = Project
         fields = "__all__"
+
+
+class MilestoneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Milestone
+        fields = '__all__'
 
 
 class ProjectDetailSerializer(BaseSerializer):

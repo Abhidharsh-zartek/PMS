@@ -1,10 +1,18 @@
+# Projects,milestones and module are configured here
+
 # Python imports
 from uuid import uuid4
+
+# imports for performing signals
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 # Django imports
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
 
 # Modeule imports
 from plane.db.mixins import AuditModel
@@ -52,6 +60,8 @@ def get_default_preferences():
 class Project(BaseModel):
     NETWORK_CHOICES = ((0, "Secret"), (2, "Public"))
     name = models.CharField(max_length=255, verbose_name="Project Name")
+    # start_date = models.DateField()
+    # end_date = models.DateField()
     description = models.TextField(
         verbose_name="Project Description", blank=True
     )
@@ -130,6 +140,55 @@ class Project(BaseModel):
     def save(self, *args, **kwargs):
         self.identifier = self.identifier.strip().upper()
         return super().save(*args, **kwargs)
+
+
+@receiver(post_save, sender=Project)
+def create_initial_milestones(sender, instance, created, **kwargs):
+    if created:  # Only execute when a new project is created
+        # Create six initial milestones
+        for i in range(1, 7):
+            milestone_name = f"Milestone {i}"
+            Milestone.objects.create(
+                name=milestone_name,
+                project=instance,
+                created_at=timezone.now(),  # Set the creation time
+                modified_at=timezone.now(),  # Set the modification time
+            )
+
+
+# the model which fully depends on the project
+class Milestone(BaseModel):
+    name = models.CharField(max_length=255, verbose_name="Milestone Name")
+    project = models.ForeignKey(
+        "db.Project",
+        on_delete=models.CASCADE,
+        related_name="project_name",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Milestone"
+        verbose_name_plural = "Milestones"
+        db_table = "milestones"
+        ordering = ("-created_at",)
+
+
+class Module(BaseModel):
+    name = models.CharField(max_length=255, verbose_name="Module Name")
+    milestone = models.ForeignKey(
+        "db.Milestone",
+        on_delete=models.CASCADE,
+        related_name="project_name",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Module"
+        verbose_name_plural = "Modules"
+        db_table = "modules"
+        ordering = ("-created_at",)
 
 
 class ProjectBaseModel(BaseModel):

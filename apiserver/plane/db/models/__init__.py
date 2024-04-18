@@ -15,6 +15,8 @@ from .workspace import (
 
 from .project import (
     Project,
+    Milestone,
+    Module,
     ProjectMember,
     ProjectBaseModel,
     ProjectMemberInvite,

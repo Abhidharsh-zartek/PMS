@@ -20,11 +20,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import serializers
 from rest_framework.permissions import AllowAny
+from rest_framework import viewsets
 
 # Module imports
 from plane.app.views.base import BaseViewSet, BaseAPIView, WebhookMixin
 from plane.app.serializers import (
     ProjectSerializer,
+    MilestoneSerializer,       
     ProjectListSerializer,
     ProjectFavoriteSerializer,
     ProjectDeployBoardSerializer,
@@ -37,6 +39,8 @@ from plane.app.permissions import (
 
 from plane.db.models import (
     Project,
+    Milestone,
+    Module,
     ProjectMember,
     Workspace,
     State,
@@ -651,3 +655,11 @@ class ProjectDeployBoardViewSet(BaseViewSet):
 
         serializer = ProjectDeployBoardSerializer(project_deploy_board)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ProjectMilestones(viewsets.ModelViewSet):
+    permission_classes = [
+        ProjectBasePermission,
+    ]
+    queryset = Milestone.objects.all()
+    serializer_class = MilestoneSerializer

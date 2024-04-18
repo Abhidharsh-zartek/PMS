@@ -147,6 +147,7 @@ class ProjectAPIEndpoint(WebhookMixin, BaseAPIView):
 
     def post(self, request, slug):
         try:
+            breakpoint()
             workspace = Workspace.objects.get(slug=slug)
             serializer = ProjectSerializer(
                 data={**request.data}, context={"workspace_id": workspace.id}
