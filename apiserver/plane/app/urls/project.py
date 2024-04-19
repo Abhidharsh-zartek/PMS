@@ -2,6 +2,7 @@ from django.urls import path
 
 from plane.app.views import (
     ProjectViewSet,
+    MilestonesViewSet,
     ProjectInvitationsViewset,
     ProjectMemberViewSet,
     ProjectMemberUserEndpoint,
@@ -28,6 +29,16 @@ urlpatterns = [
             }
         ),
         name="project",
+    ),
+    path(
+        "workspaces/<uuid:project_id>/milestones",
+        MilestonesViewSet.as_view(
+            {
+                "post": "create",
+                "get": "list"
+            }
+        ),
+        name="project-milestones",
     ),
     path(
         "workspaces/<str:slug>/projects/<uuid:pk>/",

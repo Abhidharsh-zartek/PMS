@@ -11,7 +11,6 @@ from plane.app.serializers.user import (
 from plane.db.models import (
     Project,
     Milestone,
-    Module,
     ProjectMember,
     ProjectMemberInvite,
     ProjectIdentifier,
@@ -89,6 +88,30 @@ class ProjectSerializer(BaseSerializer):
         )
 
 
+class MilestoneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Milestone
+        fields = '__all__'
+
+    def create(self, validated_data):
+        project = self.context.get('project')
+        milestone = Milestone.objects.create(
+            **validated_data, project_id=project)
+        return milestone
+
+
+# class ModuleSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Module
+#         fields = '__all__'
+
+#     def create(self, validated_data):
+#         milestone = self.context.get('milestone')
+#         module = Module.objects.create(
+#             **validated_data, milestone_id=milestone)
+#         return module
+
+
 class ProjectLiteSerializer(BaseSerializer):
     class Meta:
         model = Project
@@ -140,10 +163,12 @@ class ProjectListSerializer(DynamicBaseSerializer):
         fields = "__all__"
 
 
-class MilestoneSerializer(serializers.ModelSerializer):
+class MilestoneListSerializer(BaseSerializer):
+    name = serializers.CharField(read_only=True)
+
     class Meta:
         model = Milestone
-        fields = '__all__'
+        fields = ("id", "name")
 
 
 class ProjectDetailSerializer(BaseSerializer):

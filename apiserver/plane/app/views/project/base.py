@@ -21,12 +21,14 @@ from rest_framework import status
 from rest_framework import serializers
 from rest_framework.permissions import AllowAny
 from rest_framework import viewsets
+from rest_framework.exceptions import ValidationError
 
 # Module imports
 from plane.app.views.base import BaseViewSet, BaseAPIView, WebhookMixin
 from plane.app.serializers import (
     ProjectSerializer,
-    MilestoneSerializer,       
+    MilestoneSerializer,
+    MilestoneListSerializer,
     ProjectListSerializer,
     ProjectFavoriteSerializer,
     ProjectDeployBoardSerializer,
@@ -40,7 +42,6 @@ from plane.app.permissions import (
 from plane.db.models import (
     Project,
     Milestone,
-    Module,
     ProjectMember,
     Workspace,
     State,
@@ -433,6 +434,85 @@ class ProjectViewSet(WebhookMixin, BaseViewSet):
             )
 
 
+class MilestonesViewSet(BaseViewSet):
+    serializer_class = MilestoneSerializer
+    model = Milestone
+    permission_classes = [
+        ProjectBasePermission,
+    ]
+
+    def create(self, request, project_id):
+        try:
+            project = Project.objects.get(pk=project_id)
+            serializer = self.serializer_class(
+                data={**request.data}, context={"project": project.id})
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    serializer.data, status=status.HTTP_201_CREATED
+                )
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        except Project.DoesNotExist:
+            return Response(
+                {"error": "Project does not exist"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+        except ValidationError as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        
+    def list(self, request, project_id):
+        try:
+            project = Project.objects.get(pk=project_id)
+            milestones = Milestone.objects.filter(project=project)
+            serializer = MilestoneListSerializer(milestones, many=True)
+            return Response(serializer.data)
+        except Project.DoesNotExist:
+            return Response(
+                {"error": "Project does not exist"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+
+
+# class ModuleViewSet(BaseViewSet):
+#     serializer_class = ModuleSerializer
+#     model = Module
+#     permission_classes = [
+#         ProjectBasePermission,
+#     ]
+
+#     def create(self, request, milestone_id):
+#         try:
+#             milestone = Milestone.objects.get(pk=milestone_id)
+#             serializer = self.serializer_class(
+#                 data={**request.data}, context={"milestone": milestone.id})
+#             if serializer.is_valid():
+#                 serializer.save()
+#                 return Response(
+#                     serializer.data, status=status.HTTP_201_CREATED
+#                 )
+#             return Response(
+#                 serializer.errors,
+#                 status=status.HTTP_400_BAD_REQUEST,
+#             )
+#         except Milestone.DoesNotExist:
+#             return Response(
+#                 {"error": "Milestone does not exist"},
+#                 status=status.HTTP_404_NOT_FOUND,
+#             )
+#         except ValidationError as e:
+#             return Response(
+#                 {"error": str(e)},
+#                 status=status.HTTP_400_BAD_REQUEST,
+#             )
+
+
 class ProjectArchiveUnarchiveEndpoint(BaseAPIView):
 
     permission_classes = [
@@ -655,11 +735,3 @@ class ProjectDeployBoardViewSet(BaseViewSet):
 
         serializer = ProjectDeployBoardSerializer(project_deploy_board)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-
-class ProjectMilestones(viewsets.ModelViewSet):
-    permission_classes = [
-        ProjectBasePermission,
-    ]
-    queryset = Milestone.objects.all()
-    serializer_class = MilestoneSerializer

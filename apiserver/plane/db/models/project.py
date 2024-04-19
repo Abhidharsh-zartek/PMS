@@ -167,6 +167,10 @@ class Milestone(BaseModel):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        """Return name of the milestone with project"""
+        return f"{self.name} <{self.project.name}>"
+
     class Meta:
         verbose_name = "Milestone"
         verbose_name_plural = "Milestones"
@@ -174,21 +178,26 @@ class Milestone(BaseModel):
         ordering = ("-created_at",)
 
 
-class Module(BaseModel):
-    name = models.CharField(max_length=255, verbose_name="Module Name")
-    milestone = models.ForeignKey(
-        "db.Milestone",
-        on_delete=models.CASCADE,
-        related_name="project_name",
-    )
-    created_at = models.DateTimeField(auto_now_add=True)
-    modified_at = models.DateTimeField(auto_now=True)
+# the model which fully depend on the Milestone
+# class Module(BaseModel):
+#     name = models.CharField(max_length=255, verbose_name="Module Name")
+#     milestone = models.ForeignKey(
+#         "db.Milestone",
+#         on_delete=models.CASCADE,
+#         related_name="project_name",
+#     )
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     modified_at = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        verbose_name = "Module"
-        verbose_name_plural = "Modules"
-        db_table = "modules"
-        ordering = ("-created_at",)
+#     def __str__(self):
+#         """Return name of the milestone with project"""
+#         return f"{self.name} <{self.milestone.name}>"
+
+#     class Meta:
+#         verbose_name = "Module"
+#         verbose_name_plural = "Modules"
+#         db_table = "modules"
+#         ordering = ("-created_at",)
 
 
 class ProjectBaseModel(BaseModel):

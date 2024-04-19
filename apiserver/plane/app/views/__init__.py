@@ -1,5 +1,6 @@
 from .project.base import (
     ProjectViewSet,
+    MilestonesViewSet,
     ProjectIdentifierEndpoint,
     ProjectUserViewsEndpoint,
     ProjectFavoritesViewSet,

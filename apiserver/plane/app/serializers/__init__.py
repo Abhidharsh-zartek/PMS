@@ -22,6 +22,7 @@ from .workspace import (
 from .project import (
     ProjectSerializer,
     MilestoneSerializer,
+    MilestoneListSerializer,
     ProjectListSerializer,
     ProjectDetailSerializer,
     ProjectMemberSerializer,
